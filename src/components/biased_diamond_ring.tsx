@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
-import isMobile from "ismobilejs";
-import Sketch from "react-p5"
-import p5Types from "p5"
-import "../scss/components/BiasedDiamondRing.scss"
+import React, { useEffect, useState } from 'react'
+import isMobile from 'ismobilejs'
+import Sketch from 'react-p5'
+import p5Types from 'p5'
+import '../scss/components/BiasedDiamondRing.scss'
 
 type pointProps = {
   deg: number
@@ -14,19 +14,20 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   const [p5Obj, setP5Obj] = useState<p5Types>()
   const [waitFlag, setWaitFlag] = useState(false)
 
-  const MIN_POINTS = 10
-  const MAX_POINTS = 120
   let cx = 0
   let cy = 0
   let r = 0
+
+  const MIN_POINTS = 10
+  const MAX_POINTS = 120
   let points: pointProps = []
 
   let cnt = 0
   let waitTime = 0
 
   useEffect(() => {
-    window.addEventListener("resize", windowResized)
-    return () => window.removeEventListener("resize", windowResized)
+    window.addEventListener('resize', windowResized)
+    return () => window.removeEventListener('resize', windowResized)
   }, [p5Obj])
 
   const windowResized = () => {
@@ -48,11 +49,11 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       p5Obj.fill(255)
 
       // Draw outer circle
-      p5Obj.noFill()
-      p5Obj.strokeWeight(0.1)
-      p5Obj.stroke(127)
-      p5Obj.circle(cx, cy, r * 2)
-      p5Obj.stroke(0)
+      // p5Obj.noFill()
+      // p5Obj.strokeWeight(0.1)
+      // p5Obj.stroke(127)
+      // p5Obj.circle(cx, cy, r * 2)
+      // p5Obj.stroke(0)
 
       setPoints()
       setWaitFlag(false)
@@ -84,9 +85,9 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
 
       // Show points length
       p5Obj.fill(51)
-      p5Obj.textFont("Inter")
+      p5Obj.textFont('Inter')
       p5Obj.textAlign(p5Obj.RIGHT, p5Obj.BOTTOM)
-      p5Obj.textSize(11)
+      p5Obj.textSize(10)
       p5Obj.text(points.length, p5Obj.width - 10, p5Obj.height - 10)
     }
   }
@@ -115,7 +116,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
     } else {
       // Wait on complete
       waitTime++
-      if (waitTime > 180) {
+      if (waitTime > 300) {
         cnt = 0
         p5.clear()
         p5.background(255)
