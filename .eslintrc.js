@@ -22,8 +22,14 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    'no-console': 'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+      {
+        variables: false
+      }
+    ],
     'no-plusplus': 'off',
     "import/no-extraneous-dependencies": [
       "error",
@@ -34,8 +40,9 @@ module.exports = {
     'react/function-component-definition': [
       2,
       {
-        namedComponents: 'function-declaration',
-      }
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
     ],
     'react/jsx-filename-extension': [
       2,
