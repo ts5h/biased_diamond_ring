@@ -19,7 +19,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   let r = 0
 
   const MIN_POINTS = 10
-  const MAX_POINTS = 120
+  const MAX_POINTS = 100
   let points: pointProps = []
 
   let cnt = 0
@@ -42,11 +42,10 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       // Initialize
       cx = p5Obj.width / 2
       cy = p5Obj.height / 2
-      r = p5Obj.min(p5Obj.width, p5Obj.height) / 2 - (isMobile().any ? 25 : 50)
+      r = p5Obj.min(p5Obj.width, p5Obj.height) / 2 - (isMobile().any ? 25 : 80)
 
       // Fill background
-      p5Obj.background(255)
-      p5Obj.fill(255)
+      p5Obj.background(255).fill(255)
 
       // Draw outer circle
       // p5Obj.noFill()
@@ -55,6 +54,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       // p5Obj.circle(cx, cy, r * 2)
       // p5Obj.stroke(0)
 
+      p5Obj.strokeWeight(0.1)
       setPoints()
       setWaitFlag(false)
     }
@@ -82,13 +82,13 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       })
 
       // console.log(points)
-
       // Show points length
-      p5Obj.fill(51)
-      p5Obj.textFont('Inter')
-      p5Obj.textAlign(p5Obj.RIGHT, p5Obj.BOTTOM)
-      p5Obj.textSize(10)
-      p5Obj.text(points.length, p5Obj.width - 10, p5Obj.height - 10)
+      p5Obj
+        .fill(51)
+        .textFont('Inter')
+        .textAlign(p5Obj.RIGHT, p5Obj.BOTTOM)
+        .textSize(10)
+        .text(points.length, p5Obj.width - 10, p5Obj.height - 10)
     }
   }
 
@@ -118,11 +118,8 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       waitTime++
       if (waitTime > 300) {
         cnt = 0
-        p5.clear()
-        p5.background(255)
+        p5.clear().background(255).noFill()
         setPoints()
-        p5.noFill()
-
         waitTime = 0
         setWaitFlag(false)
       }
