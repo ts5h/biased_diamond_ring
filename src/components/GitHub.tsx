@@ -29,7 +29,7 @@ const GitHub = (props: GitHubLinkType) => {
       onBlur={() => onMouseHandler(false)}
       onTouchStart={() => onTouchHandler(true)}
       onTouchEnd={() => onTouchHandler(false)}
-      className={`${theme === 'light' ? Styles.light : ''} ${Styles.github} ${hover ? Styles.on : ''}`}
+      className={`${Styles.github} ${theme === 'light' ? Styles.light : ''} ${hover ? Styles.on : ''}`}
     >
       <a href={url} target="_blank" title="GitHub" rel="noreferrer">
         GitHub
