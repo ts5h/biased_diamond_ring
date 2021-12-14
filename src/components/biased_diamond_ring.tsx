@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import isMobile from "ismobilejs";
 import Sketch from "react-p5"
 import p5Types from "p5"
 import "../scss/components/BiasedDiamondRing.scss"
@@ -13,6 +14,8 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   const [p5Obj, setP5Obj] = useState<p5Types>()
   const [waitFlag, setWaitFlag] = useState(false)
 
+  const MIN_POINTS = 10
+  const MAX_POINTS = 120
   let cx = 0
   let cy = 0
   let r = 0
@@ -24,7 +27,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   useEffect(() => {
     window.addEventListener("resize", windowResized)
     return () => window.removeEventListener("resize", windowResized)
-  }, [])
+  }, [p5Obj])
 
   const windowResized = () => {
     if (p5Obj) {
@@ -33,10 +36,33 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   }
 
   // Support Functions
+  const init = () => {
+    if (p5Obj) {
+      // Initialize
+      cx = p5Obj.width / 2
+      cy = p5Obj.height / 2
+      r = p5Obj.min(p5Obj.width, p5Obj.height) / 2 - (isMobile().any ? 25 : 50)
+
+      // Fill background
+      p5Obj.background(255)
+      p5Obj.fill(255)
+
+      // Draw outer circle
+      p5Obj.noFill()
+      p5Obj.strokeWeight(0.1)
+      p5Obj.stroke(127)
+      p5Obj.circle(cx, cy, r * 2)
+      p5Obj.stroke(0)
+
+      setPoints()
+      setWaitFlag(false)
+    }
+  }
+
   const setPoints = () => {
     if (p5Obj) {
       points = []
-      const pointNum = p5Obj.floor(p5Obj.random(3, 101))
+      const pointNum = p5Obj.floor(p5Obj.random(MIN_POINTS, MAX_POINTS + 1))
 
       for (let i = 0; i < pointNum; i++) {
         const deg = p5Obj.random(360)
@@ -58,8 +84,9 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
 
       // Show points length
       p5Obj.fill(51)
+      p5Obj.textFont("Inter")
       p5Obj.textAlign(p5Obj.RIGHT, p5Obj.BOTTOM)
-      p5Obj.textSize(10)
+      p5Obj.textSize(11)
       p5Obj.text(points.length, p5Obj.width - 10, p5Obj.height - 10)
     }
   }
@@ -68,25 +95,12 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   const setup = (p5: p5Types, parentRef: Element) => {
     setP5Obj(p5)
     p5.createCanvas(window.innerWidth, window.innerHeight).parent(parentRef)
-
-    cx = p5.width / 2
-    cy = p5.height / 2
-    r = p5.min(p5.width, p5.height) / 2 - 80
-
-    p5.background(255)
-    p5.stroke(0)
-    p5.strokeWeight(0.1)
-    p5.noFill()
-    setPoints()
   }
 
   const draw = (p5: p5Types) => {
     if (!waitFlag) {
-      // Draw outer circle
       if (cnt === 0) {
-        p5.stroke(127)
-        p5.circle(cx, cy, r * 2)
-        p5.stroke(0)
+        init()
       }
 
       // Draw the diamond ring
@@ -101,12 +115,12 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
     } else {
       // Wait on complete
       waitTime++
-      if (waitTime > 300) {
+      if (waitTime > 180) {
         cnt = 0
         p5.clear()
         p5.background(255)
-        p5.noFill()
         setPoints()
+        p5.noFill()
 
         waitTime = 0
         setWaitFlag(false)

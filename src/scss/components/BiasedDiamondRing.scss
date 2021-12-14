@@ -1,9 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 .react-p5 {
   width: 100%;
   height: 100%;
   overflow: hidden;
 
   canvas {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
     vertical-align: bottom;
   }
 }
