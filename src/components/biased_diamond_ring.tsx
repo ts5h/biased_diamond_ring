@@ -28,7 +28,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
   useEffect(() => {
     window.addEventListener('resize', windowResized)
     return () => window.removeEventListener('resize', windowResized)
-  }, [p5Obj])
+  }, [p5Obj, waitFlag])
 
   const windowResized = () => {
     if (p5Obj) {
