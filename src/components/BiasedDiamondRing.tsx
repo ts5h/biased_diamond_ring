@@ -4,7 +4,7 @@ import Sketch from 'react-p5'
 import p5Types from 'p5'
 import '../scss/components/BiasedDiamondRing.scss'
 
-type pointProps = {
+type pointsType = {
   deg: number
   x: number
   y: number
@@ -20,17 +20,17 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
 
   const MIN_POINTS = 10
   const MAX_POINTS = 100
-  let points: pointProps = []
+  let points: pointsType = []
 
   let cnt = 0
   let waitTime = 0
 
   useEffect(() => {
-    window.addEventListener('resize', windowResized)
-    return () => window.removeEventListener('resize', windowResized)
+    window.addEventListener('resize', windowResizedHandler)
+    return () => window.removeEventListener('resize', windowResizedHandler)
   }, [p5Obj, waitFlag])
 
-  const windowResized = () => {
+  const windowResizedHandler = () => {
     if (p5Obj) {
       p5Obj.resizeCanvas(window.innerWidth, window.innerHeight)
     }

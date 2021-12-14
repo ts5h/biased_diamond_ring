@@ -1,5 +1,5 @@
 import React from 'react'
-import BiasedDiamondRing from './components/biased_diamond_ring'
+import BiasedDiamondRing from './components/BiasedDiamondRing'
 import './scss/App.scss'
 
 const App = () => (
