@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import isMobile from "ismobilejs";
-import Styles from "../scss/components/GitHub.scss"
+import React, { useState } from 'react'
+import isMobile from 'ismobilejs'
+import Styles from '../scss/components/GitHub.module.scss'
 
 type GitHubLinkType = {
   theme: 'light' | 'dark'
@@ -29,9 +29,11 @@ const GitHub = (props: GitHubLinkType) => {
       onBlur={() => onMouseHandler(false)}
       onTouchStart={() => onTouchHandler(true)}
       onTouchEnd={() => onTouchHandler(false)}
-      className={`${Styles.github} ${theme} ${hover ? Styles.on : ''}`}
+      className={`${theme === 'light' ? Styles.light : ''} ${Styles.github} ${hover ? Styles.on : ''}`}
     >
-      <a href={url} target="_blank" title="GitHub" rel="noreferrer">GitHub</a>
+      <a href={url} target="_blank" title="GitHub" rel="noreferrer">
+        GitHub
+      </a>
     </div>
   )
 }
