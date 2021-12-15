@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import isMobile from 'ismobilejs'
 import Styles from '../scss/components/GitHub.module.scss'
 
+// GitHub Link
 type GitHubLinkType = {
   theme: 'light' | 'dark'
   url: string

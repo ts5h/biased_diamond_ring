@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import isMobile from 'ismobilejs'
 import Styles from '../scss/components/ReturnToHome.module.scss'
 
+// Common "Return To Home" Link
 const ReturnToHome = (props: { theme: 'light' | 'dark' }) => {
   const { theme } = props
   const [hover, setHover] = useState(false)
