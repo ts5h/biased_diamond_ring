@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import isMobile from 'ismobilejs'
 import Styles from '../scss/components/ReturnToHome.module.scss'
 
-const ReturnToHome = (props: {theme: 'light' | 'dark'}) => {
+const ReturnToHome = (props: { theme: 'light' | 'dark' }) => {
   const { theme } = props
   const [hover, setHover] = useState(false)
 
@@ -26,7 +26,9 @@ const ReturnToHome = (props: {theme: 'light' | 'dark'}) => {
       onTouchEnd={() => onTouchHandler(false)}
       className={`${Styles.github} ${theme === 'light' ? Styles.light : ''} ${hover ? Styles.on : ''}`}
     >
-      <a href="/" title="HOME">HOME</a>
+      <a href="/" title="HOME">
+        HOME
+      </a>
     </div>
   )
 }
