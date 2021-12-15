@@ -24,7 +24,7 @@ const ReturnToHome = (props: { theme: 'light' | 'dark' }) => {
       onBlur={() => onMouseHandler(false)}
       onTouchStart={() => onTouchHandler(true)}
       onTouchEnd={() => onTouchHandler(false)}
-      className={`${Styles.github} ${theme === 'light' ? Styles.light : ''} ${hover ? Styles.on : ''}`}
+      className={`${Styles.return_to_home} ${theme === 'light' ? Styles.light : ''} ${hover ? Styles.on : ''}`}
     >
       <a href="/" title="HOME">
         HOME
