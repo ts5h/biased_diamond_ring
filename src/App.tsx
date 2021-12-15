@@ -1,8 +1,8 @@
 import React from 'react'
+import ReturnToHome from './components/ReturnToHome'
+import GitHub from './components/GitHub'
 import BiasedDiamondRing from './components/BiasedDiamondRing'
 import './scss/App.scss'
-import GitHub from './components/GitHub'
-import ReturnToHome from './components/ReturnToHome'
 
 const App = () => (
   <div className="App">
