@@ -2,8 +2,9 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import App from '../App'
 
-test('renders learn react link', () => {
-  render(<App />)
-  const linkElement = screen.getByText(/learn react/i)
-  expect(linkElement).toBeInTheDocument()
+// *** The following test does not work currently ***
+test('Mounted #react-p5 div', () => {
+  const app = render(<App />)
+  const p5Div = screen.getByTestId('react-p5')
+  expect(p5Div).not.toBeNull()
 })
