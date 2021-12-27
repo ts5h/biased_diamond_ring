@@ -54,7 +54,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       // p5Obj.circle(cx, cy, r * 2)
       // p5Obj.stroke(0)
 
-      p5Obj.strokeWeight(0.1)
+      p5Obj.strokeWeight(0.5)
       setPoints()
       setWaitFlag(false)
     }
@@ -84,7 +84,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       // console.log(points)
       // Show points length
       p5Obj
-        .fill(68)
+        .fill('rgba(68, 68, 68, 0.8)')
         .textFont('Inter')
         .textAlign(p5Obj.RIGHT, p5Obj.BOTTOM)
         .textSize(10)
@@ -105,11 +105,7 @@ const BiasedDiamondRing: React.FunctionComponent = () => {
       }
 
       // Draw the diamond ring
-      if (isMobile().any) {
-        p5.stroke('rgba(0, 0, 0, 0.3)')
-      } else {
-        p5.stroke(0)
-      }
+      p5.stroke('rgba(0, 0, 0, 0.2)')
 
       for (let i = cnt + 1; i < points.length; i++) {
         p5.line(points[cnt].x, points[cnt].y, points[i].x, points[i].y)
